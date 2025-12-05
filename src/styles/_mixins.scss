@@ -1,0 +1,29 @@
+@use "sass:map";
+@use "./variables" as vars;
+
+// Themify mixin
+@mixin themify($themes) {
+  @each $theme, $theme-map in $themes {
+    .#{$theme}-theme & {
+      $theme-map: $theme-map !global;
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}
+
+// Alternative mixin for top-level usage (like body)
+@mixin themify-root($themes) {
+  @each $theme, $theme-map in $themes {
+    .#{$theme}-theme {
+      $theme-map: $theme-map !global;
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}
+
+// Function to get themed values
+@function themed($key) {
+  @return map.get($theme-map, $key);
+}

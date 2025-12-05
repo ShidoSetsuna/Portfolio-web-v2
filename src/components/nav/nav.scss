@@ -1,0 +1,236 @@
+@use "../../styles/variables" as vars;
+@use "../../styles/mixins" as mixins;
+
+.menu-backdrop {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0);
+  transition: background-color 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+
+  &.open {
+    display: block;
+    background-color: rgba(0, 0, 0, 0.5);
+    pointer-events: auto;
+  }
+
+  @media (min-width: 769px) {
+    display: none !important;
+  }
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  padding: 1rem 2rem;
+  backdrop-filter: blur(10px);
+
+  @include mixins.themify(vars.$themes) {
+    background-color: rgba(mixins.themed("bg"), 0.95);
+    border-bottom: 1px solid rgba(mixins.themed("accent"), 0.2);
+  }
+
+  .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .nav-brand {
+    z-index: 2;
+
+    a {
+      font-family: vars.$font_family-heading;
+      font-size: vars.$font_size-subheader;
+      font-weight: 600;
+      text-decoration: none;
+
+      @include mixins.themify(vars.$themes) {
+        color: mixins.themed("brand");
+      }
+    }
+  }
+
+  .burger-menu {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 2;
+    position: relative;
+
+    span {
+      width: 100%;
+      height: 3px;
+      border-radius: 3px;
+      transition: all 0.3s ease;
+
+      @include mixins.themify(vars.$themes) {
+        background-color: mixins.themed("text");
+      }
+    }
+
+    &.open span:nth-child(1) {
+      transform: rotate(45deg) translate(8px, 8px);
+    }
+
+    &.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    &.open span:nth-child(3) {
+      transform: rotate(-45deg) translate(8px, -8px);
+    }
+
+    @media (max-width: 768px) {
+      display: flex;
+    }
+  }
+
+  .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+    flex: 1;
+    justify-content: center;
+    overflow-y: hidden;
+    z-index: 4;
+
+    li {
+      a {
+        text-decoration: none;
+        font-family: vars.$font_family-body;
+        font-size: vars.$font_size-description-small;
+        font-weight: 500;
+        position: relative;
+        transition: color 0.3s ease;
+
+        @include mixins.themify(vars.$themes) {
+          color: mixins.themed("text");
+
+          &:hover {
+            color: mixins.themed("brand");
+          }
+
+          &::after {
+            content: "";
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: mixins.themed("accent");
+            transition: width 0.3s ease;
+          }
+
+          &:hover::after {
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    @media (max-width: 768px) {
+      position: fixed;
+      top: 0;
+      right: -101%;
+      height: 100vh;
+      width: 70%;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+      gap: 2.5rem;
+      transition: right 0.3s ease;
+      padding: 2rem;
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-left: 1px solid rgba(255, 255, 255, 0.18);
+      overflow: hidden;
+
+      @include mixins.themify(vars.$themes) {
+        background: linear-gradient(
+          135deg,
+          rgba(mixins.themed("surface"), 0.9) 0%,
+          rgba(mixins.themed("surface"), 0.9) 100%
+        );
+        box-shadow: -8px 0 32px rgba(0, 0, 0, 0.3),
+          inset 1px 0 1px rgba(255, 255, 255, 0.1);
+      }
+
+      // Wavy distortion effect using pseudo-element
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -10px;
+        width: 120%;
+        height: 100%;
+        pointer-events: none;
+        opacity: 0.6;
+        background: radial-gradient(
+          ellipse at 0% 50%,
+          rgba(255, 255, 255, 0.15) 0%,
+          transparent 50%
+        );
+        filter: blur(15px);
+      }
+
+      // Additional glass reflection effect
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 40%;
+        height: 100%;
+        pointer-events: none;
+        opacity: 0.08;
+        background: linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0.8) 0%,
+          transparent 100%
+        );
+      }
+
+      &.open {
+        right: 0;
+        width: 101%;
+      }
+
+      li {
+        position: relative;
+        z-index: 2;
+
+        a {
+          font-size: vars.$font_size-burger-nav-item;
+        }
+      }
+    }
+  }
+
+  .nav-toggle {
+    display: flex;
+    align-items: center;
+    z-index: 2;
+    position: relative;
+    gap: 24px;
+  }
+}

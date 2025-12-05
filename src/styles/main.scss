@@ -1,5 +1,39 @@
+@use "./variables" as vars;
+@use "./mixins" as mixins;
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+
+  @include mixins.themify-root(vars.$themes) {
+    background-color: mixins.themed("bg");
+    color: mixins.themed("text");
+  }
+}
+
+body {
+  font-family: vars.$font_family-body;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  min-height: 100vh;
+  overflow-x: hidden;
+
+  @include mixins.themify(vars.$themes) {
+    background-color: mixins.themed("bg");
+    color: mixins.themed("text");
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: vars.$font_family-heading;
 }

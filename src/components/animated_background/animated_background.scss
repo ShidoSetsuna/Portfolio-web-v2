@@ -1,0 +1,183 @@
+@use "../../styles/variables" as vars;
+@use "../../styles/mixins" as mixins;
+
+.animated-background {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+
+  @include mixins.themify(vars.$themes) {
+    background: linear-gradient(
+      to top,
+      mixins.themed("bg") 0%,
+      mixins.themed("surface") 50%,
+      mixins.themed("bg") 100%
+    );
+  }
+
+  &__filters {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 0;
+    width: 0;
+  }
+
+  &__mesh-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -7;
+    pointer-events: none;
+  }
+
+  &__blob-container {
+    position: absolute;
+    inset: 0;
+    z-index: -8;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    filter: url(#goo) blur(20px) url(#grain);
+  }
+
+  &__blob {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    height: 80%;
+    width: 80%;
+    mix-blend-mode: hard-light;
+    border-radius: 50%;
+
+    @include mixins.themify(vars.$themes) {
+      &--1 {
+        background: radial-gradient(
+          circle at center,
+          rgba(mixins.themed("brand"), 0.8) 0%,
+          rgba(mixins.themed("brand"), 0) 50%
+        );
+        opacity: 1;
+        animation: circle1 20s ease-in-out infinite;
+      }
+
+      &--2 {
+        background: radial-gradient(
+          circle at center,
+          rgba(mixins.themed("accent"), 0.8) 0%,
+          rgba(mixins.themed("accent"), 0) 50%
+        );
+        opacity: 1;
+        transform-origin: calc(50% - 400px);
+        animation: circle2 15s ease-in-out infinite;
+      }
+
+      &--3 {
+        top: calc(10% + 200px);
+        left: calc(10% - 500px);
+        background: radial-gradient(
+          circle at center,
+          rgba(vars.$color-dark-accent, 0.8) 0%,
+          rgba(vars.$color-dark-accent, 0) 50%
+        );
+        opacity: 1;
+        transform-origin: calc(50% + 400px);
+        animation: circle3 25s ease-in-out infinite;
+      }
+
+      &--4 {
+        background: radial-gradient(
+          circle at center,
+          rgba(vars.$color-dark-brand, 0.8) 0%,
+          rgba(vars.$color-dark-brand, 0) 50%
+        );
+        opacity: 0.7;
+        transform-origin: calc(50% - 200px);
+        animation: circle4 18s ease-in-out infinite;
+      }
+
+      &--5 {
+        height: 160%;
+        width: 160%;
+        background: radial-gradient(
+          circle at center,
+          rgba(mixins.themed("accent"), 0.8) 0%,
+          rgba(mixins.themed("accent"), 0) 50%
+        );
+        opacity: 1;
+        transform-origin: calc(50% - 800px) calc(50% + 200px);
+        animation: circle5 22s ease-in-out infinite;
+      }
+    }
+  }
+}
+
+// Blob animations
+@keyframes circle1 {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  33% {
+    transform: translate(30%, -30%) rotate(120deg);
+  }
+  66% {
+    transform: translate(-20%, 20%) rotate(240deg);
+  }
+}
+
+@keyframes circle2 {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  33% {
+    transform: translate(-30%, 30%) rotate(-120deg);
+  }
+  66% {
+    transform: translate(20%, -20%) rotate(-240deg);
+  }
+}
+
+@keyframes circle3 {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  33% {
+    transform: translate(20%, 40%) rotate(160deg);
+  }
+  66% {
+    transform: translate(-30%, -30%) rotate(320deg);
+  }
+}
+
+@keyframes circle4 {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  33% {
+    transform: translate(-40%, -20%) rotate(-140deg);
+  }
+  66% {
+    transform: translate(30%, 30%) rotate(-280deg);
+  }
+}
+
+@keyframes circle5 {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  33% {
+    transform: translate(10%, -40%) rotate(100deg);
+  }
+  66% {
+    transform: translate(-25%, 25%) rotate(200deg);
+  }
+}

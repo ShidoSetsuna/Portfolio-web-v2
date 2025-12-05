@@ -1,6 +1,319 @@
+@use "../../styles/variables" as vars;
+@use "../../styles/mixins" as mixins;
+
 .home {
+  position: relative;
+
+  @include mixins.themify-root(vars.$themes) {
+    background-color: mixins.themed("bg");
+  }
+
+  // Frosted glass overlay for better text readability
+  &::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -5;
+    backdrop-filter: blur(24px) saturate(224%);
+    -webkit-backdrop-filter: blur(24px) saturate(224%);
+    pointer-events: none;
+
+    @include mixins.themify(vars.$themes) {
+      background: rgba(mixins.themed("bg"), 0.6);
+    }
+  }
+
+  section {
+    padding: 5rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+
+    @media (max-width: 768px) {
+      padding: 3rem 1.5rem;
+    }
+  }
+
+  &__hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 4rem;
+    min-height: 80vh;
+
+    @media (max-width: 968px) {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: 3rem;
+      min-height: auto;
+    }
+  }
+
+  &__hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    @media (max-width: 968px) {
+      align-items: center;
+    }
+  }
+
+  &__hero-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    img {
+      width: 100%;
+      max-width: 500px;
+      height: auto;
+      border-radius: 20px;
+      object-fit: cover;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease;
+
+      @include mixins.themify(vars.$themes) {
+        border: 3px solid mixins.themed("brand");
+      }
+
+      &:hover {
+        transform: scale(1.02);
+      }
+    }
+
+    // Decorative glow effect
+    &::before {
+      content: "";
+      position: absolute;
+      inset: -20px;
+      border-radius: 30px;
+      opacity: 0.3;
+      filter: blur(40px);
+      z-index: -1;
+      transition: opacity 0.3s ease;
+
+      @include mixins.themify(vars.$themes) {
+        background: linear-gradient(
+          135deg,
+          mixins.themed("brand"),
+          mixins.themed("accent")
+        );
+      }
+    }
+
+    &:hover::before {
+      opacity: 0.5;
+    }
+
+    @media (max-width: 968px) {
+      order: -1;
+    }
+  }
+
   &__header {
-    font-size: 2rem;
-    color: darken($primary-color, 10%);
+    font-size: clamp(3rem, 8vw, 7rem);
+    font-family: vars.$font_family-heading;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+
+    @include mixins.themify(vars.$themes) {
+      color: mixins.themed("brand");
+    }
+
+    @media (max-width: 968px) {
+      text-align: center;
+    }
+  }
+
+  &__subheader {
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    font-family: vars.$font_family-heading;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: 0.02em;
+
+    @include mixins.themify(vars.$themes) {
+      color: mixins.themed("accent");
+    }
+
+    @media (max-width: 968px) {
+      text-align: center;
+    }
+  }
+
+  &__description {
+    font-size: clamp(1.125rem, 2vw, 1.5rem);
+    max-width: 700px;
+    line-height: 1.8;
+    margin: 0;
+
+    @include mixins.themify(vars.$themes) {
+      color: mixins.themed("text");
+      opacity: 0.85;
+    }
+
+    @media (max-width: 968px) {
+      text-align: center;
+    }
+  }
+
+  &__about-me,
+  &__projects,
+  &__contact {
+    margin-bottom: 4rem;
+  }
+
+  &__about-me-header,
+  &__projects-header {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-family: vars.$font_family-heading;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    letter-spacing: -0.01em;
+
+    @include mixins.themify(vars.$themes) {
+      color: mixins.themed("brand");
+    }
+  }
+
+  &__contact-header {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-family: vars.$font_family-heading;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-align: center;
+
+    @include mixins.themify(vars.$themes) {
+      color: mixins.themed("brand");
+    }
+  }
+
+  &__about-me-description,
+  &__projects-description,
+  &__contact-description {
+    font-size: clamp(1.125rem, 2vw, 1.5rem);
+    line-height: 1.8;
+    max-width: 900px;
+
+    @include mixins.themify(vars.$themes) {
+      color: mixins.themed("text");
+    }
+  }
+
+  &__projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+
+  &__contact {
+    text-align: center;
+    padding-bottom: 6rem;
+
+    &-description {
+      margin: 0 auto 3rem;
+    }
+
+    &-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
+
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    &-card {
+      padding: 2.5rem 2rem;
+      border-radius: 20px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      cursor: pointer;
+
+      @include mixins.themify(vars.$themes) {
+        background: rgba(mixins.themed("brand"), 0.4);
+        border: 2px solid rgba(mixins.themed("brand"), 0.3);
+        color: mixins.themed("text");
+      }
+
+      &:hover {
+        transform: translateY(-8px) scale(1.02);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+
+        @include mixins.themify(vars.$themes) {
+          background: rgba(mixins.themed("brand"), 0.6);
+          border-color: mixins.themed("brand");
+          box-shadow: 0 20px 40px rgba(mixins.themed("brand"), 0.3);
+        }
+
+        .home__contact-card-icon {
+          transform: scale(1.2) rotate(10deg);
+        }
+      }
+
+      &-icon {
+        font-size: 3rem;
+        transition: transform 0.3s ease;
+      }
+
+      &-title {
+        font-size: clamp(1.25rem, 2vw, 1.5rem);
+        font-family: vars.$font_family-heading;
+        font-weight: 600;
+        margin: 0;
+
+        @include mixins.themify(vars.$themes) {
+          color: mixins.themed("brand");
+        }
+      }
+
+      &-detail {
+        font-size: clamp(0.9rem, 1.5vw, 1.125rem);
+        margin: 0;
+        word-break: break-word;
+
+        @include mixins.themify(vars.$themes) {
+          color: mixins.themed("text");
+          opacity: 0.85;
+        }
+      }
+    }
+  }
+}
+
+// Blob animations
+@keyframes circle1 {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  33% {
+    transform: translate(30%, -30%) rotate(120deg);
+  }
+  66% {
+    transform: translate(-20%, 20%) rotate(240deg);
   }
 }
