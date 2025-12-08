@@ -90,7 +90,7 @@ function Home() {
             </p>
           </a>
           <a
-            href="https://linkedin.com/in/valdemar"
+            href="https://www.linkedin.com/in/valdemar-andreas-larsen-7a6932386"
             target="_blank"
             rel="noopener noreferrer"
             className="home__contact-card">
