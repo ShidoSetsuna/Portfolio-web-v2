@@ -3,6 +3,8 @@ import ProjectCard from "../../components/project_card/project_card.jsx";
 import AnimatedBackground from "../../components/animated_background/animated_background.jsx";
 import headlinerImg from "../../assets/headliner.png";
 import toolboxImg from "../../assets/shidostoolbox.png";
+import hifiImg from "../../assets/hifi.png";
+import me from "../../assets/me.jpg";
 import { IoMail } from "react-icons/io5";
 import { SiRefinedgithub } from "react-icons/si";
 import { FaLinkedin } from "react-icons/fa";
@@ -17,12 +19,11 @@ function Home() {
     <main className="home">
       {isBgEnabled && <AnimatedBackground />}
 
-      <section className="home__hero">
+      <section className="home__hero" id="home">
         <div className="home__hero-content">
           <h1 className="home__header" alt="Valdemar Andreas Larsen">
             Valdemar Andreas Larsen
           </h1>
-          <Cube />
           <h2 className="home__subheader">Web Developer student</h2>
           <p className="home__description">
             Hello! I'm Valdemar, a passionate web developer student. Welcome to
@@ -30,11 +31,11 @@ function Home() {
           </p>
         </div>
         <div className="home__hero-image">
-          <img src="https://via.placeholder.com/500x500" alt="Profile" />
+          <img src={me} alt="Valdemar Andreas Larsen" />
         </div>
       </section>
 
-      <section className="home__about-me">
+      <section className="home__about-me" id="about">
         <h2 className="home__about-me-header">About Me</h2>
         <p className="home__about-me-description">
           I'm currently studying web development at Roskilde Tekniske School in
@@ -44,7 +45,7 @@ function Home() {
         </p>
       </section>
 
-      <section className="home__projects">
+      <section className="home__projects" id="projects">
         <h2 className="home__projects-header">My Projects</h2>
         <p className="home__projects-description">
           Here are some of the projects I've worked on during my studies:
@@ -69,10 +70,21 @@ function Home() {
             The name of the website comes from my online nickname 'Shido Setsuna', hence the name 'Shido's Toolbox'."
             liveLink="https://www.shidostoolbox.com/"
           />
+          <ProjectCard
+            imgSrc={hifiImg}
+            title="Hi-Fi tech store website"
+            tags={["React", "SCSS", "vite", "render", "swiper", "zustand"]}
+            description="A demo e-commerce website for Hi-Fi audio equipment. This project was created as part of my web development studies.
+            This was a group project where I worked together with 1 other classmate to create a fully functional online store.
+            I mainly worked on setting up the render API for loading products and the shop page, as well as the chat bot on the product page.
+            I also worked on the contact, about us and user profile pages."
+            liveLink="https://hi-fi-project.vercel.app"
+            repoLink="https://github.com/ShidoSetsuna/Hi-FI_Horizon_project"
+          />
         </div>
       </section>
 
-      <section className="home__contact">
+      <section className="home__contact" id="contact">
         <h3 className="home__contact-header">Contact Me</h3>
         <p className="home__contact-description">
           Feel free to reach out if you'd like to connect!
