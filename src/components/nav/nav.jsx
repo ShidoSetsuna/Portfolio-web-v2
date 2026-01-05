@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Toggle from "../toggle/toggle.jsx";
 import "./nav.scss";
 

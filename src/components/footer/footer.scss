@@ -1,0 +1,16 @@
+@use "../../styles/variables" as vars;
+@use "../../styles/mixins" as mixins;
+
+.footer {
+  @include mixins.themify(vars.$themes) {
+    background-color: mixins.themed("surface");
+  }
+  color: #fff;
+  text-align: center;
+  padding: 1rem 0;
+
+  &__text {
+    margin: 0;
+    font-size: 0.875rem;
+  }
+}
