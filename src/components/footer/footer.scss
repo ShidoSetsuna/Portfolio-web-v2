@@ -12,5 +12,8 @@
   &__text {
     margin: 0;
     font-size: 0.875rem;
+    @include mixins.themify(vars.$themes) {
+      color: mixins.themed("text");
+    }
   }
 }
