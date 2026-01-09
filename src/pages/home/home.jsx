@@ -8,6 +8,7 @@ import me from "../../assets/me.jpg";
 import { IoMail } from "react-icons/io5";
 import { SiRefinedgithub } from "react-icons/si";
 import { FaLinkedin } from "react-icons/fa";
+import GlobalCounter from "../../components/counter/counter.jsx";
 import "./home.scss";
 import Cube from "../../components/cube/cube.jsx";
 
@@ -127,6 +128,7 @@ function Home() {
           </a>
         </div>
       </section>
+      <GlobalCounter />
     </main>
   );
 }
