@@ -151,19 +151,21 @@
     @media (max-width: 768px) {
       position: fixed;
       top: 4.8rem;
-      right: -101%;
+      right: 0;
       height: calc(100dvh - 4.8rem);
-      width: 70%;
+      width: 101%;
       flex-direction: column;
       justify-content: space-evenly;
       align-items: center;
       gap: 2.5rem;
-      transition: right 0.3s ease;
       padding: 2rem;
       backdrop-filter: blur(20px) saturate(180%);
       -webkit-backdrop-filter: blur(20px) saturate(180%);
       border-left: 1px solid rgba(255, 255, 255, 0.18);
       overflow: hidden;
+      will-change: transform;
+      transform: translateX(101%);
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 
       @include mixins.themify(vars.$themes) {
         background: linear-gradient(
@@ -175,25 +177,7 @@
           inset 1px 0 1px rgba(255, 255, 255, 0.1);
       }
 
-      // Wavy distortion effect using pseudo-element
-      &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -10px;
-        width: 120%;
-        height: 100%;
-        pointer-events: none;
-        opacity: 0.6;
-        background: radial-gradient(
-          ellipse at 0% 50%,
-          rgba(255, 255, 255, 0.15) 0%,
-          transparent 50%
-        );
-        filter: blur(15px);
-      }
-
-      // Additional glass reflection effect
+      // Glass reflection effect
       &::after {
         content: "";
         position: absolute;
@@ -211,17 +195,25 @@
       }
 
       &.open {
-        right: 0;
-        width: 101%;
+        transform: translateX(0);
       }
 
       li {
         position: relative;
         z-index: 2;
+        opacity: 0;
+        transform: translateX(40px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+        transition-delay: calc(var(--i) * 0.1s);
 
         a {
           font-size: vars.$font_size-burger-nav-item;
         }
+      }
+
+      &.open li {
+        opacity: 1;
+        transform: translateX(0);
       }
     }
   }

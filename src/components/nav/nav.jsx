@@ -42,22 +42,22 @@ export default function Nav({ onBgToggle }) {
           </div>
 
           <ul className={`nav-links ${isMenuOpen ? "open" : ""}`}>
-            <li>
+            <li style={{ "--i": 0 }}>
               <a href="#home" onClick={closeMenu}>
                 Home
               </a>
             </li>
-            <li>
+            <li style={{ "--i": 1 }}>
               <a href="#about" onClick={closeMenu}>
                 About
               </a>
             </li>
-            <li>
+            <li style={{ "--i": 2 }}>
               <a href="#projects" onClick={closeMenu}>
                 Projects
               </a>
             </li>
-            <li>
+            <li style={{ "--i": 3 }}>
               <a href="#contact" onClick={closeMenu}>
                 Contact
               </a>
