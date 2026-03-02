@@ -9,6 +9,7 @@ import { IoMail } from "react-icons/io5";
 import { SiRefinedgithub } from "react-icons/si";
 import { FaLinkedin } from "react-icons/fa";
 import GlobalCounter from "../../components/counter/counter.jsx";
+import Skills from "../../components/skills/skills.jsx";
 import "./home.scss";
 import Cube from "../../components/cube/cube.jsx";
 
@@ -51,6 +52,8 @@ function Home() {
           projects!
         </p>
       </section>
+
+      <Skills />
 
       <section className="home__projects" id="projects">
         <h2 className="home__projects-header">My Projects</h2>
