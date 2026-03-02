@@ -60,6 +60,24 @@
     }
   }
 
+  &__header-inline-img {
+    display: none;
+
+    @media (max-width: 968px) {
+      display: inline-block;
+      width: 84px;
+      height: 84px;
+      border-radius: 50%;
+      object-fit: cover;
+      vertical-align: middle;
+      margin: 0 0.25em;
+
+      @include mixins.themify(vars.$themes) {
+        border: 3px solid mixins.themed("brand");
+      }
+    }
+  }
+
   &__hero-image {
     display: flex;
     justify-content: center;
@@ -109,7 +127,7 @@
     }
 
     @media (max-width: 968px) {
-      order: -1;
+      display: none;
     }
   }
 

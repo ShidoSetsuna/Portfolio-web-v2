@@ -23,7 +23,13 @@ function Home() {
       <section className="home__hero" id="home">
         <div className="home__hero-content">
           <h1 className="home__header" alt="Valdemar Andreas Larsen">
-            Valdemar Andreas Larsen
+            Valdemar{" "}
+            <img
+              src={me}
+              alt="Valdemar Andreas Larsen"
+              className="home__header-inline-img"
+            />{" "}
+            Andreas Larsen
           </h1>
           <h2 className="home__subheader">Web Developer student</h2>
           <p className="home__description">
