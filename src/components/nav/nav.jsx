@@ -5,12 +5,20 @@ import "./nav.scss";
 export default function Nav({ onBgToggle }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const lockScroll = (lock) => {
+    document.body.style.overflow = lock ? "hidden" : "";
+    document.documentElement.style.overflow = lock ? "hidden" : "";
+  };
+
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+    const next = !isMenuOpen;
+    setIsMenuOpen(next);
+    lockScroll(next);
   };
 
   const closeMenu = () => {
     setIsMenuOpen(false);
+    lockScroll(false);
   };
 
   const handleThemeToggle = (isDark) => {
