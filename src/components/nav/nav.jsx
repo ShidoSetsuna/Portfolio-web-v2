@@ -1,9 +1,28 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Toggle from "../toggle/toggle.jsx";
 import "./nav.scss";
 
 export default function Nav({ onBgToggle }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navLinksRef = useRef(null);
+
+  // Kill transition while resizing so the menu doesn't flash when
+  // crossing the mobile/desktop breakpoint
+  useEffect(() => {
+    let timer;
+    const handleResize = () => {
+      const el = navLinksRef.current;
+      if (!el) return;
+      el.classList.add("no-transition");
+      clearTimeout(timer);
+      timer = setTimeout(() => el.classList.remove("no-transition"), 150);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      clearTimeout(timer);
+    };
+  }, []);
 
   const lockScroll = (lock) => {
     document.body.style.overflow = lock ? "hidden" : "";
@@ -41,7 +60,7 @@ export default function Nav({ onBgToggle }) {
             <a href="/">Portfolio</a>
           </div>
 
-          <ul className={`nav-links ${isMenuOpen ? "open" : ""}`}>
+          <ul ref={navLinksRef} className={`nav-links ${isMenuOpen ? "open" : ""}`}>
             <li style={{ "--i": 0 }}>
               <a href="#home" onClick={closeMenu}>
                 Home

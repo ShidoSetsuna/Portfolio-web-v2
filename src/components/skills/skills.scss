@@ -38,48 +38,36 @@
     width: 100%;
     overflow: hidden;
     margin-bottom: 1.25rem;
-
-    // Fade edges
-    &::before,
-    &::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 120px;
-      z-index: 2;
-      pointer-events: none;
-
-      @include mixins.themify(vars.$themes) {
-        background: linear-gradient(
-          to right,
-          mixins.themed("bg"),
-          transparent
-        );
-      }
-    }
-
-    &::before {
-      left: 0;
-    }
-
-    &::after {
-      right: 0;
-
-      @include mixins.themify(vars.$themes) {
-        background: linear-gradient(
-          to left,
-          mixins.themed("bg"),
-          transparent
-        );
-      }
-    }
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 120px,
+      black calc(100% - 120px),
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 120px,
+      black calc(100% - 120px),
+      transparent 100%
+    );
 
     @media (max-width: 768px) {
-      &::before,
-      &::after {
-        width: 60px;
-      }
+      mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 60px,
+        black calc(100% - 60px),
+        transparent 100%
+      );
+      -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 60px,
+        black calc(100% - 60px),
+        transparent 100%
+      );
     }
   }
 
