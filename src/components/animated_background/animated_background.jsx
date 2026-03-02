@@ -37,8 +37,17 @@ export default function AnimatedBackground() {
 
     window.addEventListener("mousemove", handleMouseMove);
 
-    // Animation loop
-    const animate = () => {
+    // Animation loop — capped at 30fps to halve GPU load
+    let lastTime = 0;
+    const FPS = 30;
+    const interval = 1000 / FPS;
+    let rafId;
+
+    const animate = (timestamp) => {
+      rafId = requestAnimationFrame(animate);
+      if (timestamp - lastTime < interval) return;
+      lastTime = timestamp;
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       // Update blob positions
@@ -90,11 +99,9 @@ export default function AnimatedBackground() {
           }
         }
       }
-
-      requestAnimationFrame(animate);
     };
 
-    animate();
+    animate(0);
 
     // Handle resize
     const handleResize = () => {
@@ -105,6 +112,7 @@ export default function AnimatedBackground() {
     window.addEventListener("resize", handleResize);
 
     return () => {
+      cancelAnimationFrame(rafId);
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("resize", handleResize);
     };
@@ -132,25 +140,6 @@ export default function AnimatedBackground() {
             <feBlend in="SourceGraphic" in2="goo" />
           </filter>
         </defs>
-      </svg>
-      <svg width="0" height="0">
-        <filter id="grain">
-          <feTurbulence
-            type="fractalNoise"
-            baseFrequency="0.8"
-            numOctaves="4"
-            result="noise"
-          />
-          <feComposite
-            in="SourceGraphic"
-            in2="noise"
-            operator="arithmetic"
-            k1="0.4"
-            k2="0.7"
-            k3="0"
-            k4="0"
-          />
-        </filter>
       </svg>
       <div className="animated-background__blob-container">
         <div className="animated-background__blob animated-background__blob--1"></div>

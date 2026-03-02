@@ -42,7 +42,7 @@
     height: 100%;
     width: 100%;
     overflow: hidden;
-    filter: url(#goo) blur(20px) url(#grain);
+    filter: url(#goo) blur(20px);
   }
 
   &__blob {
@@ -51,8 +51,9 @@
     left: 10%;
     height: 80%;
     width: 80%;
-    mix-blend-mode: hard-light;
     border-radius: 50%;
+    will-change: transform;
+    transform: translateZ(0);
 
     @include mixins.themify(vars.$themes) {
       &--1 {
