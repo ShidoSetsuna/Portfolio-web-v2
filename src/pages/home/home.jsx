@@ -112,7 +112,7 @@ function Home() {
             </p>
           </a>
           <a
-            href="https://www.linkedin.com/in/valdemar-andreas-larsen-7a6932386"
+            href="https://www.linkedin.com/in/valdemar-andreas-larsen"
             target="_blank"
             rel="noopener noreferrer"
             className="home__contact-card">
@@ -121,7 +121,7 @@ function Home() {
             </div>
             <h4 className="home__contact-card-title">LinkedIn</h4>
             <p className="home__contact-card-detail">
-              linkedin.com/in/valdemar
+              linkedin.com/in/valdemar-andreas-larsen
             </p>
           </a>
           <a
