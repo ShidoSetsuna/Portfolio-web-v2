@@ -40,6 +40,7 @@ $perspective: 600px;
     height: $cube-size;
     perspective: $perspective;
     cursor: pointer;
+    touch-action: none;
 
     .cube-spin {
       width: 100%;
