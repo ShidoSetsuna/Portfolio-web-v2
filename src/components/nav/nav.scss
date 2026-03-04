@@ -28,7 +28,7 @@
   position: sticky;
   top: 0;
   z-index: 2;
-  padding: 1rem 2rem;
+  padding: 1rem clamp(0.75rem, 4vw, 2rem);
   backdrop-filter: blur(10px);
 
   @include mixins.themify(vars.$themes) {
@@ -42,23 +42,39 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 2rem;
+    gap: clamp(0.75rem, 3vw, 2rem);
     position: relative;
     z-index: 2;
   }
 
   .nav-brand {
     z-index: 2;
+    min-width: 0;
+    flex-shrink: 1;
 
     a {
       font-family: vars.$font_family-heading;
-      font-size: vars.$font_size-subheader;
       font-weight: 600;
       text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
 
       @include mixins.themify(vars.$themes) {
         color: mixins.themed("brand");
       }
+    }
+
+    .brand-name {
+      font-size: clamp(0.8rem, 3.5vw, 1.5rem);
+      white-space: nowrap;
+    }
+
+    .brand-title {
+      font-size: clamp(0.6rem, 2.2vw, 0.95rem);
+      font-weight: 400;
+      opacity: 0.7;
+      white-space: nowrap;
     }
   }
 
@@ -233,6 +249,7 @@
     align-items: center;
     z-index: 2;
     position: relative;
-    gap: 24px;
+    gap: clamp(10px, 3vw, 24px);
+    flex-shrink: 0;
   }
 }

@@ -57,7 +57,10 @@ export default function Nav({ onBgToggle }) {
       <nav className="navbar">
         <div className="nav-container">
           <div className="nav-brand">
-            <a href="/">Portfolio</a>
+            <a href="/">
+              <span className="brand-name">Valdemar Andreas</span>
+              <span className="brand-title">Frontend Developer</span>
+            </a>
           </div>
 
           <ul ref={navLinksRef} className={`nav-links ${isMenuOpen ? "open" : ""}`}>
