@@ -1,57 +1,108 @@
-$cube-size: 150px;
-$face-bg: rgba(241, 242, 243, 0.2);
-$face-border: rgba(247, 247, 248);
+@use "../../styles/variables" as vars;
+@use "../../styles/mixins" as mixins;
+
+$cube-size: 125px;
 $border-radius: 8px;
 $animation-duration: 6s;
 $perspective: 600px;
 
-.container {
+.cube-counter {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  height: 100vh;
+  gap: 1.2rem;
+
+  &__header {
+    font-family: vars.$font_family-heading;
+    font-size: vars.$font_size-header;
+    font-weight: 600;
+    text-align: center;
+
+    @include mixins.themify(vars.$themes) {
+      color: mixins.themed("text");
+    }
+  }
+
+  &__hint {
+    font-family: vars.$font_family-body;
+    font-size: vars.$font_size-description-small;
+    opacity: 0.6;
+    text-align: center;
+
+    @include mixins.themify(vars.$themes) {
+      color: mixins.themed("text");
+    }
+  }
 
   .scene {
+    margin: 2rem;
     width: $cube-size;
     height: $cube-size;
     perspective: $perspective;
+    cursor: pointer;
 
-    .cube {
+    .cube-spin {
       width: 100%;
       height: 100%;
       position: relative;
       transform-style: preserve-3d;
 
-      .face {
-        position: absolute;
-        width: $cube-size;
-        height: $cube-size;
-        background: $face-bg;
-        border: 0.0625rem solid $face-border;
-        border-radius: $border-radius;
+      .cube {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        transform-style: preserve-3d;
 
-        &.front {
-          transform: translateZ(calc($cube-size / 2));
-        }
+        .face {
+          position: absolute;
+          width: $cube-size;
+          height: $cube-size;
+          border-radius: $border-radius;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          backface-visibility: visible;
+          user-select: none;
 
-        &.back {
-          transform: rotateY(180deg) translateZ(calc($cube-size / 2));
-        }
+          @include mixins.themify(vars.$themes) {
+            background: rgba(mixins.themed("surface"), 0.25);
+            border: 1px solid rgba(mixins.themed("accent"), 0.3);
+          }
 
-        &.right {
-          transform: rotateY(90deg) translateZ(calc($cube-size / 2));
-        }
+          &__count {
+            font-family: vars.$font_family-heading;
+            font-size: 2.2rem;
+            font-weight: 700;
+            pointer-events: none;
 
-        &.left {
-          transform: rotateY(-90deg) translateZ(calc($cube-size / 2));
-        }
+            @include mixins.themify(vars.$themes) {
+              color: mixins.themed("text");
+            }
+          }
 
-        &.top {
-          transform: rotateX(90deg) translateZ(calc($cube-size / 2));
-        }
+          &.front {
+            transform: translateZ(calc($cube-size / 2));
+          }
 
-        &.bottom {
-          transform: rotateX(-90deg) translateZ(calc($cube-size / 2));
+          &.back {
+            transform: rotateY(180deg) translateZ(calc($cube-size / 2));
+          }
+
+          &.right {
+            transform: rotateY(90deg) translateZ(calc($cube-size / 2));
+          }
+
+          &.left {
+            transform: rotateY(-90deg) translateZ(calc($cube-size / 2));
+          }
+
+          &.top {
+            transform: rotateX(90deg) translateZ(calc($cube-size / 2));
+          }
+
+          &.bottom {
+            transform: rotateX(-90deg) translateZ(calc($cube-size / 2));
+          }
         }
       }
     }
