@@ -184,6 +184,19 @@
     }
   }
 
+  &__description-flag {
+    display: inline-block;
+    width: 1.4em;
+    height: 1em;
+    border-radius: 4px;
+    vertical-align: middle;
+    margin: 0 0.15em;
+    object-fit: cover;
+    position: relative;
+    top: -0.08em;
+    overflow: hidden;
+  }
+
   &__about-me,
   &__projects,
   &__contact {

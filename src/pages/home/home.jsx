@@ -8,6 +8,7 @@ import me from "../../assets/me.jpg";
 import { IoMail } from "react-icons/io5";
 import { SiRefinedgithub } from "react-icons/si";
 import { FaLinkedin } from "react-icons/fa";
+import dk from "../../assets/dk.svg";
 import Skills from "../../components/skills/skills.jsx";
 import "./home.scss";
 import Cube from "../../components/cube/cube.jsx";
@@ -33,7 +34,7 @@ function Home() {
           </h1>
           <h2 className="home__subheader">Web Developer student</h2>
           <p className="home__description">
-            Hello! I'm Valdemar, a passionate web developer student. Welcome to
+            Hello! I'm Valdemar, a passionate web developer student. From and located in Denmark! {<img src={dk} className="home__description-flag" alt="Denmark" />} Welcome to
             my portfolio!
           </p>
         </div>

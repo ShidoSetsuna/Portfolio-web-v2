@@ -98,6 +98,10 @@ export default function Cube() {
   }, []);
 
   const onPointerUp = useCallback(async () => {
+    // Reset tracking (important for touch where there's no pointerLeave)
+    lastPointer.current = null;
+    velocity.current = { x: 0, y: 0 };
+
     // Only count as click if pointer didn't drag
     if (isDragging.current) return;
     if (loading) return;
