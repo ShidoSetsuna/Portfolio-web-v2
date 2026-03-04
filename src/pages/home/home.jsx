@@ -46,7 +46,7 @@ function Home() {
       <section className="home__about-me" id="about">
         <h2 className="home__about-me-header">About Me</h2>
         <p className="home__about-me-description">
-          Hey there! I'm Valdemar — but feel free to call me Andreas. I'm a
+          Hey there! I'm Valdemar I'm a
           25-year-old web development student at Roskilde Tekniske School in
           Denmark with a genuine passion for building apps that
           just <em>work</em>. The kind of developer who spots a tiny bug and
@@ -55,7 +55,8 @@ function Home() {
         </p>
         <p className="home__about-me-description">
           What really motivates me is building modular, maintainable systems.
-          Hardcoded, hard-to-refactor code? Not on my watch. I love taking
+          Hardcoded, hard-to-refactor code is something I avoid at all costs.
+           I love taking
           complex problems and breaking them down into smaller, manageable
           pieces - and I thrive in teams where open communication matters more
           than rigid structure.
@@ -63,13 +64,14 @@ function Home() {
         <p className="home__about-me-description">
           Right now I'm diving into TanStack and TypeScript, which is a perfect
           fit for me since TanStack is so modular and flexible. My favourite
-          language is actually C# - a bit ironic for a web dev, I know, but I
+          language is C# - a bit ironic for a web dev, I know, but I
           just find it incredibly readable.
         </p>
         <p className="home__about-me-description">
           I'm still early in my web dev journey, but I'm hungry to learn and
-          excited about what's ahead. When I'm not coding, you'll probably find
-          me watching football - it's a big passion of mine. Take a look at some
+          excited about what's ahead. In my free time, I do still code alot.
+          But im also a big Football fan. Currently hoping to see Wrexham make it to the
+          Premier League! Thanks for reading! Take a look at some
           of my projects below!
         </p>
       </section>
