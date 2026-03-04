@@ -65,7 +65,7 @@ $perspective: 600px;
           user-select: none;
 
           @include mixins.themify(vars.$themes) {
-            background: rgba(mixins.themed("surface"), 0.25);
+            background: radial-gradient(#86aec8, transparent);
             border: 1px solid rgba(mixins.themed("accent"), 0.3);
           }
 

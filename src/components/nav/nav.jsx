@@ -7,7 +7,8 @@ export default function Nav({ onBgToggle }) {
   const navLinksRef = useRef(null);
 
   // Kill transition while resizing so the menu doesn't flash when
-  // crossing the mobile/desktop breakpoint
+  // crossing the mobile/desktop breakpoint this is the only fix I could find that works..
+  // refactor later if possible
   useEffect(() => {
     let timer;
     const handleResize = () => {
