@@ -50,8 +50,10 @@ function Home() {
           25-year-old web development student at Roskilde Tekniske School in
           Denmark with a genuine passion for building apps that
           just <em>work</em>. The kind of developer who spots a tiny bug and
-          won't rest until it's squashed, even if it takes days - call it
-          perfectionism, I call it caring about the craft.
+          won't rest until it's squashed, even if it takes days. It's probably a bit of
+          perfectionism on my part, but I care about delivering quality work that I myself can 
+          stand by and be proud of. That all said, I still have much to learn,
+          and I still make a ton of mistakes, but each mistake makes me slightly better!
         </p>
         <p className="home__about-me-description">
           What really motivates me is building modular, maintainable systems.
@@ -69,8 +71,8 @@ function Home() {
         </p>
         <p className="home__about-me-description">
           I'm still early in my web dev journey, but I'm hungry to learn and
-          excited about what's ahead. In my free time, I do still code alot.
-          But im also a big Football fan. Currently hoping to see Wrexham make it to the
+          excited about what's ahead. In my free time, I do still code alot,
+          but im also a big Football fan. Currently hoping to see Wrexham make it to the
           Premier League! Thanks for reading! Take a look at some
           of my projects below!
         </p>
