@@ -9,6 +9,10 @@
   backdrop-filter: blur(10px);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 
+  @media (max-width: 768px) {
+    backdrop-filter: none;
+  }
+
   @include mixins.themify(vars.$themes) {
     background: linear-gradient(
       135deg,
