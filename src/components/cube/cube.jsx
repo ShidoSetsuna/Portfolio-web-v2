@@ -129,7 +129,7 @@ export default function Cube() {
     velocity.current = { x: 0, y: 0 };
   }, []);
 
-  const displayCount = loading ? "..." : count;
+  const displayCount = loading ? "" : count;
 
   return (
     <div className="cube-counter">
