@@ -202,6 +202,157 @@
     overflow: hidden;
   }
 
+  &__featured {
+    padding-top: 2rem;
+
+    &-eyebrow {
+      display: block;
+      font-family: vars.$font_family-heading;
+      font-size: clamp(0.8rem, 1.5vw, 1rem);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 1.2rem;
+
+      @include mixins.themify(vars.$themes) {
+        color: mixins.themed("accent");
+      }
+    }
+
+    &-card {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 3.5rem;
+      align-items: center;
+      border-radius: 24px;
+      overflow: hidden;
+      padding: 2.5rem;
+
+      @include mixins.themify(vars.$themes) {
+        background: linear-gradient(
+          135deg,
+          rgba(mixins.themed("surface"), 0.7) 0%,
+          rgba(mixins.themed("surface"), 0.4) 100%
+        );
+        border: 1px solid rgba(mixins.themed("accent"), 0.2);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+      }
+
+      @media (max-width: 900px) {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 1.5rem;
+      }
+    }
+
+    &-image-link {
+      display: block;
+      border-radius: 14px;
+      overflow: hidden;
+      flex-shrink: 0;
+
+      @include mixins.themify(vars.$themes) {
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+        outline: 2px solid rgba(mixins.themed("accent"), 0.2);
+      }
+
+      &:hover .home__featured-image {
+        transform: scale(1.03);
+      }
+    }
+
+    &-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      transition: transform 0.4s ease;
+    }
+
+    &-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    &-title {
+      font-family: vars.$font_family-heading;
+      font-size: clamp(1.5rem, 3vw, 2.25rem);
+      font-weight: 700;
+      margin: 0;
+      line-height: 1.2;
+
+      @include mixins.themify(vars.$themes) {
+        color: mixins.themed("brand");
+      }
+    }
+
+    &-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    &-tag {
+      font-family: vars.$font_family-body;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+
+      @include mixins.themify(vars.$themes) {
+        background: rgba(mixins.themed("accent"), 0.15);
+        color: mixins.themed("accent");
+        border: 1px solid rgba(mixins.themed("accent"), 0.3);
+      }
+    }
+
+    &-description {
+      font-family: vars.$font_family-body;
+      font-size: clamp(1rem, 1.5vw, 1.15rem);
+      line-height: 1.8;
+      margin: 0;
+
+      @include mixins.themify(vars.$themes) {
+        color: mixins.themed("text");
+        opacity: 0.85;
+      }
+    }
+
+    &-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+
+    &-btn {
+      display: inline-block;
+      font-family: vars.$font_family-heading;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 0.65rem 1.75rem;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+      }
+
+      &--primary {
+        @include mixins.themify(vars.$themes) {
+          background: mixins.themed("brand");
+          color: #fff;
+          box-shadow: 0 4px 16px rgba(mixins.themed("brand"), 0.4);
+
+          &:hover {
+            box-shadow: 0 8px 24px rgba(mixins.themed("brand"), 0.5);
+          }
+        }
+      }
+    }
+  }
+
   &__about-me,
   &__projects,
   &__contact {
@@ -218,6 +369,23 @@
 
     @include mixins.themify(vars.$themes) {
       color: mixins.themed("brand");
+    }
+  }
+
+  &__about-me-subheader {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-family: vars.$font_family-heading;
+    font-weight: 600;
+    margin: 2rem 0 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+
+    @include mixins.themify(vars.$themes) {
+      color: mixins.themed("accent");
+    }
+
+    &:first-of-type {
+      margin-top: 0;
     }
   }
 

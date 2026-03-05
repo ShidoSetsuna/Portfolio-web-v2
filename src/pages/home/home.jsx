@@ -43,8 +43,51 @@ function Home() {
         </div>
       </section>
 
+      <section className="home__featured" id="featured">
+        <span className="home__featured-eyebrow">Featured Project</span>
+        <div className="home__featured-card">
+          <a
+            href="https://headliner-rho.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="home__featured-image-link">
+            <img
+              src={headlinerImg}
+              alt="Headliner news website"
+              className="home__featured-image"
+            />
+          </a>
+          <div className="home__featured-content">
+            <h3 className="home__featured-title">Headliner — News Website</h3>
+            <div className="home__featured-tags">
+              {["React", "SCSS", "Vite", "react-router", "tanstack-query"].map((tag) => (
+                <span key={tag} className="home__featured-tag">{tag}</span>
+              ))}
+            </div>
+            <p className="home__featured-description">
+              A news aggregator powered by the New York Times API. The main
+              challenge was working within tight API rate limits (5 req/min,
+              500 req/day), so I implemented smart caching and deduplication
+              strategies with TanStack Query to keep the UI snappy without
+              burning through the quota.
+            </p>
+            <div className="home__featured-actions">
+              <a
+                href="https://headliner-rho.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="project-card__link project-card__link--primary">
+                Live Demo
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="home__about-me" id="about">
         <h2 className="home__about-me-header">About Me</h2>
+
+        <h3 className="home__about-me-subheader">Who I Am</h3>
         <p className="home__about-me-description">
           Hey there! I'm Valdemar I'm a
           25-year-old web development student at Roskilde Tekniske School in
@@ -55,6 +98,8 @@ function Home() {
           stand by and be proud of. That all said, I still have much to learn,
           and I still make a ton of mistakes, but each mistake makes me slightly better!
         </p>
+
+        <h3 className="home__about-me-subheader">How I Work</h3>
         <p className="home__about-me-description">
           What really motivates me is building modular, maintainable systems.
           Hardcoded, hard-to-refactor code is something I avoid at all costs.
@@ -63,12 +108,16 @@ function Home() {
           pieces - and I thrive in teams where open communication matters more
           than rigid structure.
         </p>
+
+        <h3 className="home__about-me-subheader">What I'm Learning</h3>
         <p className="home__about-me-description">
           Right now I'm diving into TanStack and TypeScript, which is a perfect
           fit for me since TanStack is so modular and flexible. My favourite
           language is C# - a bit ironic for a web dev, I know, but I
           just find it incredibly readable.
         </p>
+
+        <h3 className="home__about-me-subheader">Outside of Code</h3>
         <p className="home__about-me-description">
           I'm still early in my web dev journey, but I'm hungry to learn and
           excited about what's ahead. In my free time, I do still code a lot,

@@ -20,7 +20,7 @@ export default function Cube() {
   const quickY = useRef(null);
   const isDragging = useRef(false);
 
-  const [count, setCount] = useState("...");
+  const [count, setCount] = useState("");
   const [loading, setLoading] = useState(false);
 
   // Fetch initial count
