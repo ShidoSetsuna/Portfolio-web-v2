@@ -535,3 +535,32 @@
     transform: translate(-20%, 20%) rotate(240deg);
   }
 }
+
+// ─── "You're already here" toast ────────────────────────────────────
+.home__toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(1rem);
+  padding: 0.65rem 1.25rem;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  z-index: 100;
+  white-space: nowrap;
+
+  @include mixins.themify(vars.$themes) {
+    background-color: mixins.themed("surface");
+    color: mixins.themed("text");
+    border: 1px solid rgba(mixins.themed("accent"), 0.3);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  }
+
+  &--visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}

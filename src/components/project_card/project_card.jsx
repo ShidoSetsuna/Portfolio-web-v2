@@ -7,6 +7,7 @@ export default function ProjectCard({
   description,
   repoLink,
   liveLink,
+  onLiveClick,
 }) {
   return (
     <div className="project-card">
@@ -33,14 +34,22 @@ export default function ProjectCard({
               Repository
             </a>
           )}
-          {liveLink && (
-            <a
-              href={liveLink}
-              className="project-card__link project-card__link--primary"
-              target="_blank"
-              rel="noopener noreferrer">
-              Live Demo
-            </a>
+          {(liveLink || onLiveClick) && (
+            onLiveClick ? (
+              <button
+                onClick={onLiveClick}
+                className="project-card__link project-card__link--primary">
+                Live Demo
+              </button>
+            ) : (
+              <a
+                href={liveLink}
+                className="project-card__link project-card__link--primary"
+                target="_blank"
+                rel="noopener noreferrer">
+                Live Demo
+              </a>
+            )
           )}
         </div>
       </div>

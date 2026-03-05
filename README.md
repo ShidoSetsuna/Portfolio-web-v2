@@ -1,16 +1,41 @@
-# React + Vite
+# Valdemar Andreas — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+My personal portfolio site. Built with React and deployed on Vercel.
 
-Currently, two official plugins are available:
+**Live site:** https://valde.app
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Stack
 
-## React Compiler
+- **React** + **Vite**
+- **SCSS** with custom theming (dark/light mode)
+- **GSAP** for animations — including a physics-based interactive 3D cube
+- **Vercel Serverless Functions** + **Upstash Redis** for a global click counter
+- **React Router** for routing
+- **React Icons** for icons
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Running locally
 
-## Expanding the ESLint configuration
+```bash
+npm install
+npm run dev
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+The dev server starts at `http://localhost:5173`.
+
+The global click counter is powered by a Vercel Serverless Function (`/api/counter.js`) backed by Upstash Redis. This works automatically when deployed on Vercel with the environment variables set in the project settings.
+
+If you want to run it outside of Vercel (e.g. a different host or a local API server), you'll need to adapt `api/counter.js` to whatever serverless or backend environment you're using, and supply the credentials yourself:
+
+```
+UPSTASH_REDIS_REST_URL=your_url_here
+UPSTASH_REDIS_REST_TOKEN=your_token_here
+```
+
+Without these the counter just won't update — everything else works fine.
+
+## Build
+
+```bash
+npm run build
+npm run preview
+```

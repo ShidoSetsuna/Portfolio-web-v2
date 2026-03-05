@@ -1,9 +1,11 @@
+import { useState, useCallback, useRef } from "react";
 import { useOutletContext } from "react-router";
 import ProjectCard from "../../components/project_card/project_card.jsx";
 import AnimatedBackground from "../../components/animated_background/animated_background.jsx";
 import headlinerImg from "../../assets/headliner.png";
 import toolboxImg from "../../assets/shidostoolbox.png";
 import hifiImg from "../../assets/hifi.png";
+import portfolioImg from "../../assets/portfolio.png";
 import me from "../../assets/me.jpg";
 import { IoMail } from "react-icons/io5";
 import { SiRefinedgithub } from "react-icons/si";
@@ -16,6 +18,14 @@ import Cube from "../../components/cube/cube.jsx";
 function Home() {
   const context = useOutletContext();
   const isBgEnabled = context?.isBgEnabled ?? true;
+  const [toast, setToast] = useState(false);
+  const toastTimer = useRef(null);
+
+  const handlePortfolioLive = useCallback(() => {
+    setToast(true);
+    clearTimeout(toastTimer.current);
+    toastTimer.current = setTimeout(() => setToast(false), 2200);
+  }, []);
 
   return (
     <main className="home">
@@ -136,13 +146,13 @@ function Home() {
         </p>
         <div className="home__projects-grid">
           <ProjectCard
-            imgSrc={headlinerImg}
-            title="News website"
-            tags={["React", "SCSS", "Vite", "react-router", "tanstack-query"]}
-            description="A simple demo news website using New York Times API to fetch and display articles. In this project, 
-            I had to work with limited API requests (5 per minute, 500 per day), so I implemented efficient data fetching and 
-            caching strategies using TanStack Query to optimize performance and user experience."
-            liveLink="https://headliner-rho.vercel.app/"
+            imgSrc={portfolioImg}
+            title="Portfolio website"
+            tags={["React", "SCSS", "Vite", "GSAP", "Vercel", "Upstash Redis"]}
+            description="The site you're looking at right now! Built from scratch as a way to showcase my work and experiment with things I find interesting.
+            Features a physics-based interactive 3D cube, a global click counter backed by a serverless API, dark/light theming, and fully responsive layout."
+            onLiveClick={handlePortfolioLive}
+            repoLink="https://github.com/ShidoSetsuna/Portfolio-web-v2"
           />
           <ProjectCard
             imgSrc={toolboxImg}
@@ -164,6 +174,15 @@ function Home() {
             I also worked on the contact, about us and user profile pages."
             liveLink="https://hi-fi-project.vercel.app"
             repoLink="https://github.com/ShidoSetsuna/Hi-FI_Horizon_project"
+          />
+          <ProjectCard
+            imgSrc={headlinerImg}
+            title="News website"
+            tags={["React", "SCSS", "Vite", "react-router", "tanstack-query"]}
+            description="A simple demo news website using New York Times API to fetch and display articles. In this project, 
+            I had to work with limited API requests (5 per minute, 500 per day), so I implemented efficient data fetching and 
+            caching strategies using TanStack Query to optimize performance and user experience."
+            liveLink="https://headliner-rho.vercel.app/"
           />
         </div>
       </section>
@@ -214,6 +233,10 @@ function Home() {
       <section className="home__the-cube">
         <Cube />
       </section>
+
+      <div className={`home__toast${toast ? " home__toast--visible" : ""}`} aria-live="polite">
+        You&apos;re already here! 👋
+      </div>
     </main>
   );
 }

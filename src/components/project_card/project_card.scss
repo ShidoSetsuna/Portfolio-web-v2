@@ -120,6 +120,9 @@
     font-size: vars.$font_size-description-small;
     font-weight: 600;
     transition: all 0.3s ease;
+    // allow rendering as <button> without visual difference
+    cursor: pointer;
+    outline: none;
 
     @include mixins.themify(vars.$themes) {
       color: mixins.themed("brand");
