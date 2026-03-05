@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import "./cube.scss";
 
@@ -6,9 +6,9 @@ const ANIMATION_DURATION = 6;
 const KICK_STRENGTH = 3;
 const KICK_DECAY = 1.2;
 const VELOCITY_SMOOTHING = 0.3;
-const CLICK_KICK = 120; // KICK ITTTTTTTTTTTTT
+const CLICK_KICK = 120; //Fuck it up const, as I like to call it
 
-export default function Cube() {
+export default function CubeStandalone() {
   const sceneRef = useRef(null);
   const spinRef = useRef(null);
   const kickRef = useRef(null);
@@ -19,17 +19,6 @@ export default function Cube() {
   const quickX = useRef(null);
   const quickY = useRef(null);
   const isDragging = useRef(false);
-
-  const [count, setCount] = useState("...");
-  const [loading, setLoading] = useState(false);
-
-  // Fetch initial count
-  useEffect(() => {
-    fetch("/api/counter")
-      .then((res) => res.json())
-      .then((data) => setCount(data.count))
-      .catch((err) => console.error("Could not load count", err));
-  }, []);
 
   // Continuous idle spin
   useEffect(() => {
@@ -67,7 +56,6 @@ export default function Cube() {
       const dx = e.clientX - lastPointer.current.x;
       const dy = e.clientY - lastPointer.current.y;
 
-      // If mouse moved enough, mark as drag
       if (Math.abs(dx) > 3 || Math.abs(dy) > 3) {
         isDragging.current = true;
       }
@@ -97,43 +85,26 @@ export default function Cube() {
     isDragging.current = false;
   }, []);
 
-  const onPointerUp = useCallback(async () => {
-    // Reset tracking (important for touch where there's no pointerLeave)
+  const onPointerUp = useCallback(() => {
     lastPointer.current = null;
     velocity.current = { x: 0, y: 0 };
 
-    // Only count as click if pointer didn't drag
     if (isDragging.current) return;
-    if (loading) return;
 
-    // Give it a satisfying kick on click
+    // Kick on click
     kickOffset.current.x += CLICK_KICK;
     kickOffset.current.y += CLICK_KICK * 0.6;
     quickX.current?.(kickOffset.current.x);
     quickY.current?.(kickOffset.current.y);
-
-    setLoading(true);
-    try {
-      const res = await fetch("/api/counter", { method: "POST" });
-      const data = await res.json();
-      setCount(data.count);
-    } catch (err) {
-      console.error("Could not increment count", err);
-    } finally {
-      setLoading(false);
-    }
-  }, [loading]);
+  }, []);
 
   const onPointerLeave = useCallback(() => {
     lastPointer.current = null;
     velocity.current = { x: 0, y: 0 };
   }, []);
 
-  const displayCount = loading ? "..." : count;
-
   return (
     <div className="cube-counter">
-      <h2 className="cube-counter__header">Global Clicker</h2>
       <div
         ref={sceneRef}
         className="scene"
@@ -145,14 +116,11 @@ export default function Cube() {
         <div ref={spinRef} className="cube-spin">
           <div ref={kickRef} className="cube">
             {["front", "back", "right", "left", "top", "bottom"].map((face) => (
-              <div key={face} className={`face ${face}`}>
-                <span className="face__count">{displayCount}</span>
-              </div>
+              <div key={face} className={`face ${face}`}></div>
             ))}
           </div>
         </div>
       </div>
-      <p className="cube-counter__hint">Click the cube!</p>
     </div>
   );
 }
