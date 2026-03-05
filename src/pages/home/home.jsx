@@ -99,7 +99,7 @@ function Home() {
 
         <h3 className="home__about-me-subheader">Who I Am</h3>
         <p className="home__about-me-description">
-          Hey there! I'm Valdemar I'm a
+          Hey there! I'm Valdemar, a
           25-year-old web development student at Roskilde Tekniske School in
           Denmark with a genuine passion for building apps that
           just <em>work</em>. The kind of developer who spots a tiny bug and
