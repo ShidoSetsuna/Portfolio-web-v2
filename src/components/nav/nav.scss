@@ -141,6 +141,10 @@
       transition: none !important;
     }
 
+    li.lang-switcher {
+      display: none;
+    }
+
     li {
       a {
         text-decoration: none;
