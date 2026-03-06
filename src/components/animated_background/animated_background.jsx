@@ -1,12 +1,19 @@
 import { useEffect, useRef } from "react";
 import "./animated_background.scss";
 
+const isMobile = () => window.innerWidth <= 768;
+
 export default function AnimatedBackground() {
+  const containerRef = useRef(null);
   const canvasRef = useRef(null);
   const blobsRef = useRef([]);
   const mouseRef = useRef({ x: 0, y: 0 });
+  const isVisibleRef = useRef(true);
 
   useEffect(() => {
+    // Skip canvas entirely on mobile — CSS blobs are enough
+    if (isMobile()) return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -27,17 +34,28 @@ export default function AnimatedBackground() {
 
     initBlobs();
 
-    // Mouse move handler
+    // Throttled mouse handler
+    let lastMouseTime = 0;
     const handleMouseMove = (e) => {
+      const now = performance.now();
+      if (now - lastMouseTime < 50) return; // ~20fps for mouse tracking
+      lastMouseTime = now;
       mouseRef.current = {
         x: e.clientX / canvas.width,
         y: e.clientY / canvas.height,
       };
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
 
-    // Animation loop — capped at 30fps to halve GPU load
+    // Pause when not visible
+    const observer = new IntersectionObserver(
+      ([entry]) => { isVisibleRef.current = entry.isIntersecting; },
+      { threshold: 0 }
+    );
+    if (containerRef.current) observer.observe(containerRef.current);
+
+    // Animation loop — capped at 30fps
     let lastTime = 0;
     const FPS = 30;
     const interval = 1000 / FPS;
@@ -45,6 +63,7 @@ export default function AnimatedBackground() {
 
     const animate = (timestamp) => {
       rafId = requestAnimationFrame(animate);
+      if (!isVisibleRef.current) return;
       if (timestamp - lastTime < interval) return;
       lastTime = timestamp;
 
@@ -52,15 +71,12 @@ export default function AnimatedBackground() {
 
       // Update blob positions
       blobsRef.current.forEach((blob) => {
-        // Natural movement
         blob.baseX += blob.vx;
         blob.baseY += blob.vy;
 
-        // Bounce off edges
         if (blob.baseX < 0.1 || blob.baseX > 0.9) blob.vx *= -1;
         if (blob.baseY < 0.1 || blob.baseY > 0.9) blob.vy *= -1;
 
-        // Mouse attraction (subtle)
         const dx = mouseRef.current.x - blob.baseX;
         const dy = mouseRef.current.y - blob.baseY;
         const dist = Math.sqrt(dx * dx + dy * dy);
@@ -75,7 +91,6 @@ export default function AnimatedBackground() {
       });
 
       // Draw mesh lines
-      ctx.strokeStyle = "rgba(107, 159, 216, 0.15)";
       ctx.lineWidth = 1.5;
 
       for (let i = 0; i < blobsRef.current.length; i++) {
@@ -87,7 +102,6 @@ export default function AnimatedBackground() {
           const dy = blob2.y - blob1.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
 
-          // Only draw lines between close blobs
           if (distance < 0.5) {
             const opacity = (0.5 - distance) / 0.5;
             ctx.strokeStyle = `rgba(107, 159, 216, ${opacity * 0.25})`;
@@ -103,7 +117,6 @@ export default function AnimatedBackground() {
 
     animate(0);
 
-    // Handle resize
     const handleResize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -113,13 +126,14 @@ export default function AnimatedBackground() {
 
     return () => {
       cancelAnimationFrame(rafId);
+      observer.disconnect();
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("resize", handleResize);
     };
   }, []);
 
   return (
-    <div className="animated-background">
+    <div ref={containerRef} className="animated-background">
       <canvas ref={canvasRef} className="animated-background__mesh-canvas" />
       <svg
         className="animated-background__filters"

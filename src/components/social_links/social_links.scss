@@ -1,3 +1,4 @@
+@use "sass:color";
 @use "../../styles/variables" as vars;
 @use "../../styles/mixins" as mixins;
 
@@ -10,6 +11,7 @@
   display: flex;
   justify-content: flex-end;
   pointer-events: none;
+  will-change: transform;
 
   &__bar {
     display: flex;
@@ -20,7 +22,7 @@
     pointer-events: auto;
 
     @include mixins.themify(vars.$themes) {
-      background-color: rgba(darken(mixins.themed("bg"), 4%), 0.95);
+      background-color: rgba(color.adjust(mixins.themed("bg"), $lightness: -4%), 0.95);
       border: 1px solid rgba(mixins.themed("accent"), 0.15);
       border-top: none;
     }

@@ -29,7 +29,7 @@ function Home() {
 
   return (
     <main className="home">
-      {isBgEnabled && <AnimatedBackground />}
+     {isBgEnabled && <AnimatedBackground />}
 
       <section className="home__hero" id="home">
         <div className="home__hero-content">
@@ -231,7 +231,7 @@ function Home() {
         </div>
       </section>
       <section className="home__the-cube">
-        <Cube />
+         <Cube /> 
       </section>
 
       <div className={`home__toast${toast ? " home__toast--visible" : ""}`} aria-live="polite">

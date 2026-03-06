@@ -10,6 +10,7 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
 
   @include mixins.themify-root(vars.$themes) {
     background-color: mixins.themed("bg");

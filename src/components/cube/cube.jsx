@@ -52,7 +52,21 @@ export default function Cube() {
       ease: "power3.out",
     });
 
+    // Pause spin when cube is not visible
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          spinTween.current?.resume();
+        } else {
+          spinTween.current?.pause();
+        }
+      },
+      { threshold: 0 }
+    );
+    if (sceneRef.current) observer.observe(sceneRef.current);
+
     return () => {
+      observer.disconnect();
       spinTween.current?.kill();
     };
   }, []);
@@ -61,6 +75,9 @@ export default function Cube() {
     if (!sceneRef.current) return;
 
     const now = performance.now();
+
+    // Throttle to ~60fps
+    if (lastPointer.current && now - lastPointer.current.t < 16) return;
 
     if (lastPointer.current) {
       const dt = Math.max(now - lastPointer.current.t, 1);

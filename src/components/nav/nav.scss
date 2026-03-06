@@ -28,6 +28,9 @@
   position: relative;
   z-index: 2;
   padding: 1rem clamp(0.75rem, 4vw, 2rem);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 
   @include mixins.themify(vars.$themes) {
     background-color: mixins.themed("bg");

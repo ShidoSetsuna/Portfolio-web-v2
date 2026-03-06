@@ -8,6 +8,7 @@
   height: 100vh;
   width: 100vw;
   overflow: hidden;
+  contain: strict;
 
   @include mixins.themify(vars.$themes) {
     background: linear-gradient(
@@ -33,6 +34,10 @@
     height: 100%;
     z-index: -7;
     pointer-events: none;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
   }
 
   &__blob-container {
@@ -43,6 +48,10 @@
     width: 100%;
     overflow: hidden;
     filter: url(#goo) blur(20px);
+
+    @media (max-width: 768px) {
+      filter: blur(30px);
+    }
   }
 
   &__blob {
@@ -54,6 +63,10 @@
     border-radius: 50%;
     will-change: transform;
     transform: translateZ(0);
+
+    @media (max-width: 768px) {
+      animation-duration: 30s !important;
+    }
 
     @include mixins.themify(vars.$themes) {
       &--1 {
