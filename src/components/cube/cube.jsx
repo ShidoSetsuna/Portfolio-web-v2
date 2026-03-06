@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
+import { useLanguage } from "../../store/languageStore.jsx";
 import "./cube.scss";
 
 const ANIMATION_DURATION = 6;
@@ -22,6 +23,7 @@ export default function Cube() {
 
   const [count, setCount] = useState("");
   const [loading, setLoading] = useState(false);
+  const { t } = useLanguage();
 
   // Fetch initial count
   useEffect(() => {
@@ -150,7 +152,7 @@ export default function Cube() {
 
   return (
     <div className="cube-counter">
-      <h2 className="cube-counter__header">Global Clicker</h2>
+      <h2 className="cube-counter__header">{t.cube.header}</h2>
       <div
         ref={sceneRef}
         className="scene"
@@ -169,7 +171,7 @@ export default function Cube() {
           </div>
         </div>
       </div>
-      <p className="cube-counter__hint">Click the cube!</p>
+      <p className="cube-counter__hint">{t.cube.hint}</p>
     </div>
   );
 }

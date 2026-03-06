@@ -1,10 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import Toggle from "../toggle/toggle.jsx";
+import { useLanguage } from "../../store/languageStore.jsx";
 import "./nav.scss";
 
 export default function Nav({ onBgToggle }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navLinksRef = useRef(null);
+  const { language, toggleLanguage, t } = useLanguage();
 
   // Kill transition while resizing so the menu doesn't flash when
   // crossing the mobile/desktop breakpoint this is the only fix I could find that works..
@@ -60,29 +62,29 @@ export default function Nav({ onBgToggle }) {
           <div className="nav-brand">
             <a href="/">
               <span className="brand-name">Valdemar Andreas</span>
-              <span className="brand-title">Frontend Developer</span>
+              <span className="brand-title">{t.nav.brandTitle}</span>
             </a>
           </div>
 
           <ul ref={navLinksRef} className={`nav-links ${isMenuOpen ? "open" : ""}`}>
             <li style={{ "--i": 0 }}>
               <a href="#home" onClick={closeMenu}>
-                Home
+                {t.nav.home}
               </a>
             </li>
             <li style={{ "--i": 1 }}>
               <a href="#about" onClick={closeMenu}>
-                About
+                {t.nav.about}
               </a>
             </li>
             <li style={{ "--i": 2 }}>
               <a href="#projects" onClick={closeMenu}>
-                Projects
+                {t.nav.projects}
               </a>
             </li>
             <li style={{ "--i": 3 }}>
               <a href="#contact" onClick={closeMenu}>
-                Contact
+                {t.nav.contact}
               </a>
             </li>
           </ul>
@@ -111,6 +113,12 @@ export default function Nav({ onBgToggle }) {
               onToggle={onBgToggle}
               ariaLabel="Toggle animated background"
             />
+            <button
+              className="lang-btn"
+              onClick={toggleLanguage}
+              aria-label={t.nav.toggleLanguage}>
+              {language === "en" ? "DA" : "EN"}
+            </button>
           </div>
         </div>
       </nav>
