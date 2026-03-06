@@ -5,7 +5,6 @@ export const en = {
     about: "About",
     projects: "Projects",
     contact: "Contact",
-    toggleLanguage: "Switch to Danish",
   },
   home: {
     subheader: "Web Developer student",

@@ -5,7 +5,6 @@ export const da = {
     about: "Om",
     projects: "Projekter",
     contact: "Kontakt",
-    toggleLanguage: "Skift til engelsk",
   },
   home: {
     subheader: "Webudvikler studerende",

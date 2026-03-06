@@ -1,12 +1,13 @@
 import { useState, useEffect, useRef } from "react";
 import Toggle from "../toggle/toggle.jsx";
 import { useLanguage } from "../../store/languageStore.jsx";
+import { LANGUAGES } from "../../store/languageStore.jsx";
 import "./nav.scss";
 
 export default function Nav({ onBgToggle }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navLinksRef = useRef(null);
-  const { language, toggleLanguage, t } = useLanguage();
+  const { language, setLanguage, t } = useLanguage();
 
   // Kill transition while resizing so the menu doesn't flash when
   // crossing the mobile/desktop breakpoint this is the only fix I could find that works..
@@ -57,7 +58,7 @@ export default function Nav({ onBgToggle }) {
         aria-hidden="true"
       />
 
-      <nav className="navbar">
+      <nav className="navbar" data-lang={language}>
         <div className="nav-container">
           <div className="nav-brand">
             <a href="/">
@@ -87,6 +88,16 @@ export default function Nav({ onBgToggle }) {
                 {t.nav.contact}
               </a>
             </li>
+            <li className="lang-switcher" style={{ "--i": 4 }}>
+              {LANGUAGES.map(({ code, label }) => (
+                <button
+                  key={code}
+                  className={`lang-pill${language === code ? " lang-pill--active" : ""}`}
+                  onClick={() => setLanguage(code)}>
+                  {label}
+                </button>
+              ))}
+            </li>
           </ul>
 
           <div className="nav-toggle">
@@ -113,12 +124,15 @@ export default function Nav({ onBgToggle }) {
               onToggle={onBgToggle}
               ariaLabel="Toggle animated background"
             />
-            <button
-              className="lang-btn"
-              onClick={toggleLanguage}
-              aria-label={t.nav.toggleLanguage}>
-              {language === "en" ? "DA" : "EN"}
-            </button>
+            <select
+              className="lang-select"
+              value={language}
+              onChange={(e) => setLanguage(e.target.value)}
+              aria-label="Select language">
+              {LANGUAGES.map(({ code, label }) => (
+                <option key={code} value={code}>{label}</option>
+              ))}
+            </select>
           </div>
         </div>
       </nav>

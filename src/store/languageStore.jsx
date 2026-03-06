@@ -1,20 +1,23 @@
 import { createContext, useContext, useState } from "react";
 import { en } from "./translations/en";
 import { da } from "./translations/da";
+import { ja } from "./translations/ja";
 
-const translations = { en, da };
+const translations = { en, da, ja };
+
+export const LANGUAGES = [
+  { code: "en", label: "EN" },
+  { code: "da", label: "DA" },
+  { code: "ja", label: "日本語" },
+];
 
 const LanguageContext = createContext(null);
 
 export function LanguageProvider({ children }) {
   const [language, setLanguage] = useState("en");
 
-  const toggleLanguage = () => {
-    setLanguage((prev) => (prev === "en" ? "da" : "en"));
-  };
-
   return (
-    <LanguageContext.Provider value={{ language, toggleLanguage, t: translations[language] }}>
+    <LanguageContext.Provider value={{ language, setLanguage, t: translations[language] }}>
       {children}
     </LanguageContext.Provider>
   );
