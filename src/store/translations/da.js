@@ -59,6 +59,11 @@ export const da = {
         description:
           "En simpel demo nyhedsside der bruger New York Times API til at hente og vise artikler. I dette projekt skulle jeg arbejde med begrænsede API-anmodninger (5 pr. minut, 500 pr. dag), så jeg implementerede effektive datahentnings- og cachingstrategier ved hjælp af TanStack Query for at optimere ydeevne og brugeroplevelse.",
       },
+      cinema: {
+        title: "Cinema hjemmeside",
+        description:
+          "En demo biograf hjemmeside bygget med React TSX og Tailwind v4. Dette projekt blev lavet som en del af mine webudviklingsstudier. Hjemmesiden har et moderne design og giver brugere mulighed for at gennemse film, se filmoplysninger og booke billetter.",
+      },
     },
     contact: {
       header: "Kontakt Mig",

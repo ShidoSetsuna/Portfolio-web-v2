@@ -7,6 +7,7 @@ import headlinerImg from "../../assets/headliner.png";
 import toolboxImg from "../../assets/shidostoolbox.png";
 import hifiImg from "../../assets/hifi.png";
 import portfolioImg from "../../assets/portfolio.png";
+import cinemaImg from "../../assets/cinema.png";
 import me from "../../assets/me.jpg";
 import { IoMail } from "react-icons/io5";
 import { SiRefinedgithub } from "react-icons/si";
@@ -143,6 +144,14 @@ function Home() {
             tags={["React", "SCSS", "Vite", "react-router", "tanstack-query"]}
             description={t.home.projects.news.description}
             liveLink="https://headliner-rho.vercel.app/"
+          />
+          <ProjectCard
+            imgSrc={cinemaImg}
+            title={t.home.projects.cinema.title}
+            tags={["React TSX", "Tailwind v4", "Vite", "TanStack Router"]}
+            description={t.home.projects.cinema.description}
+            liveLink="cinema-demo-pied.vercel.app"
+            repoLink="https://github.com/ShidoSetsuna/cinema_demo"
           />
         </div>
       </section>

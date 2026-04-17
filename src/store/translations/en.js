@@ -59,6 +59,11 @@ export const en = {
         description:
           "A simple demo news website using New York Times API to fetch and display articles. In this project, I had to work with limited API requests (5 per minute, 500 per day), so I implemented efficient data fetching and caching strategies using TanStack Query to optimize performance and user experience.",
       },
+      cinema: {
+        title: "Cinema website",
+        description:
+          "A demo cinema website built with React TSX and Tailwind v4. This project was created as part of my web development studies. The website features a modern design and allows users to browse movies, view movie details, and book tickets.",
+      },
     },
     contact: {
       header: "Contact Me",
