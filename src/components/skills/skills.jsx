@@ -6,7 +6,7 @@ import {
   SiPhp,
   SiWordpress,
   SiHtml5,
-  SiCss3,
+  SiCss,
   SiSass,
   SiVite,
   SiNodedotjs,
@@ -31,7 +31,7 @@ const row1 = [
 
 const row2 = [
   { icon: <SiSass />, label: "SCSS" },
-  { icon: <SiCss3 />, label: "CSS3" },
+  { icon: <SiCss />, label: "CSS3" },
   { icon: <SiVite />, label: "Vite" },
   { icon: <SiNodedotjs />, label: "Node.js" },
   { icon: <SiGit />, label: "Git" },
