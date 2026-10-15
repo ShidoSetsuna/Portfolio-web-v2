@@ -150,7 +150,7 @@ function Home() {
             title={t.home.projects.cinema.title}
             tags={["React TSX", "Tailwind v4", "Vite", "TanStack Router"]}
             description={t.home.projects.cinema.description}
-            liveLink="cinema-demo-pied.vercel.app"
+            liveLink="https://cinema-demo-pied.vercel.app"
             repoLink="https://github.com/ShidoSetsuna/cinema_demo"
           />
         </div>
