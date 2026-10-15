@@ -7,8 +7,8 @@ export const en = {
     contact: "Contact",
   },
   home: {
-    subheader: "Web Developer student",
-    descriptionBefore: "Hello! I'm Valdemar, a passionate web developer student. From and located in Denmark!",
+    subheader: "Web Developer",
+    descriptionBefore: "Hello! I'm Valdemar, a newly graduated web developer. From and located in Denmark!",
     descriptionAfter: "Welcome to my portfolio!",
     featured: {
       eyebrow: "Featured Project",
@@ -21,7 +21,7 @@ export const en = {
       header: "About Me",
       whoIAm: {
         title: "Who I Am",
-        text: "Hey there! I'm Valdemar, a 25-year-old web development student at Roskilde Tekniske School in Denmark with a genuine passion for building apps that just work. The kind of developer who spots a tiny bug and won't stop trying to fix it until it's resolved, even if it takes days. It's probably a bit of perfectionism on my part, but I care about delivering quality work that I myself can stand by and be proud of. That all said, I still have much to learn, and I still make a ton of mistakes, but each mistake makes me slightly better!",
+        text: "Hey there! I'm Valdemar, a 25-year-old web developer, newly graduated from Roskilde Technical College in Denmark with a genuine passion for building apps that just work. The kind of developer who spots a tiny bug and won't stop trying to fix it until it's resolved, even if it takes days. It's probably a bit of perfectionism on my part, but I care about delivering quality work that I myself can stand by and be proud of. That all said, I still have much to learn, and I still make a ton of mistakes, but each mistake makes me slightly better!",
       },
       howIWork: {
         title: "How I Work",

@@ -7,8 +7,8 @@ export const tl = {
     contact: "Contact",
   },
   home: {
-    subheader: "Web Developer student",
-    descriptionBefore: "Hello! Ako si Valdemar, isang passionate na web developer student. Galing at naka-base ako sa Denmark!",
+    subheader: "Web Developer",
+    descriptionBefore: "Hello! Ako si Valdemar, isang bagong graduate na web developer. Galing at naka-base ako sa Denmark!",
     descriptionAfter: "Welcome sa portfolio ko!",
     featured: {
       eyebrow: "Featured Project",
@@ -21,7 +21,7 @@ export const tl = {
       header: "About Me",
       whoIAm: {
         title: "Sino Ako",
-        text: "Uy, hello! Ako si Valdemar, 25 years old at kasalukuyang nag-aaral ng web development sa Roskilde Tekniske School sa Denmark. Sobrang hilig ko talagang mag-build ng mga apps na 'just works.' Ako 'yung tipong developer na kapag nakakita ng kahit maliit na bug, hindi titigil hangga't hindi ito nafi-fix—kahit abutin pa ng ilang araw. Siguro perfectionist lang talaga ako, pero mahalaga sa akin na de-kalidad ang gawa ko at proud ako rito. Siyempre, marami pa rin akong dapat matutunan at nagkakamali rin naman ako, pero bawat pagkakamali ay ginagawa akong mas mahusay na dev!",
+        text: "Uy, hello! Ako si Valdemar, 25 years old na web developer, bagong graduate mula sa Roskilde Technical College sa Denmark. Sobrang hilig ko talagang mag-build ng mga apps na 'just works.' Ako 'yung tipong developer na kapag nakakita ng kahit maliit na bug, hindi titigil hangga't hindi ito nafi-fix—kahit abutin pa ng ilang araw. Siguro perfectionist lang talaga ako, pero mahalaga sa akin na de-kalidad ang gawa ko at proud ako rito. Siyempre, marami pa rin akong dapat matutunan at nagkakamali rin naman ako, pero bawat pagkakamali ay ginagawa akong mas mahusay na dev!",
       },
       howIWork: {
         title: "Paano Ako Magtrabaho",

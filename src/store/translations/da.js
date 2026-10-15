@@ -7,8 +7,8 @@ export const da = {
     contact: "Kontakt",
   },
   home: {
-    subheader: "Webudvikler studerende",
-    descriptionBefore: "Hej! Jeg er Valdemar, en passioneret webudvikler studerende. Fra og bosat i Danmark!",
+    subheader: "Webudvikler",
+    descriptionBefore: "Hej! Jeg er Valdemar, en nyuddannet webudvikler. Fra og bosat i Danmark!",
     descriptionAfter: "Velkommen til mit portfolio!",
     featured: {
       eyebrow: "Fremhævet Projekt",
@@ -21,7 +21,7 @@ export const da = {
       header: "Om Mig",
       whoIAm: {
         title: "Hvem Er Jeg",
-        text: "Hej! Jeg er Valdemar, en 25-årig webudviklingsstuderende på Roskilde Tekniske Skole i Danmark med en ægte passion for at bygge apps der bare virker. Den slags udvikler der finder en lille fejl og ikke stopper med at prøve at rette den, selv om det tager dage. Det er nok en smule perfektionisme fra min side, men jeg sætter pris på at levere kvalitetsarbejde som jeg selv kan stå inde for og være stolt af. Alt det sagt har jeg stadig meget at lære, og jeg laver stadig masser af fejl, men hver fejl gør mig en lille smule bedre!",
+        text: "Hej! Jeg er Valdemar, en 25-årig webudvikler, nyuddannet fra Roskilde Tekniske Skole i Danmark med en ægte passion for at bygge apps der bare virker. Den slags udvikler der finder en lille fejl og ikke stopper med at prøve at rette den, selv om det tager dage. Det er nok en smule perfektionisme fra min side, men jeg sætter pris på at levere kvalitetsarbejde som jeg selv kan stå inde for og være stolt af. Alt det sagt har jeg stadig meget at lære, og jeg laver stadig masser af fejl, men hver fejl gør mig en lille smule bedre!",
       },
       howIWork: {
         title: "Hvordan Jeg Arbejder",
